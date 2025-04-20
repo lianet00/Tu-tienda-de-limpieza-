@@ -44,8 +44,8 @@ function updateCart() {
   const list = document.getElementById("cart-items");
   list.innerHTML = "";
   cart.forEach(item => {
-    const li = document.createElement("li");
     const p = products[item.i];
+    const li = document.createElement("li");
     li.textContent = `${p.name} x ${item.qty}`;
     list.appendChild(li);
   });

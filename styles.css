@@ -1,77 +1,28 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #fde4ec;
-  margin: 0;
-  padding: 0;
-  text-align: center;
+  margin: 0; padding: 0; text-align: center;
 }
 header {
-  background-color: #f8bbd0;
-  padding: 20px;
+  background-color: #f8bbd0; padding: 20px;
 }
-.logo {
-  max-width: 100px;
-  border-radius: 50%;
-}
+.logo { max-width:100px; border-radius:50%; }
 .product {
-  background: #fff;
-  border: 1px solid #f48fb1;
-  border-radius: 10px;
-  margin: 10px;
-  padding: 15px;
-  width: 200px;
-  display: inline-block;
-  vertical-align: top;
-  text-align: center;
+  background:#fff; border:1px solid #f48fb1; border-radius:10px;
+  margin:10px; padding:15px; width:200px; display:inline-block; text-align:center;
 }
-.controls {
-  margin-top: 10px;
-}
+.controls { margin-top:10px; }
 .controls button {
-  background: #f06292;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin: 0 5px;
-  cursor: pointer;
+  background:#f06292; color:white; border:none; padding:5px 10px;
+  border-radius:5px; margin:0 5px; cursor:pointer;
 }
 .cart-icon {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #f06292;
-  color: white;
-  padding: 10px;
-  border-radius: 50%;
-  font-size: 24px;
-  cursor: pointer;
+  position:fixed; bottom:20px; right:20px; background:#f06292;
+  color:white; padding:10px; border-radius:50%; font-size:24px; cursor:pointer;
 }
-.cart.hidden {
-  display: none;
-}
+.cart.hidden { display:none; }
 .cart {
-  position: fixed;
-  right: 20px;
-  bottom: 70px;
-  background: white;
-  border: 1px solid #ccc;
-  padding: 15px;
-  border-radius: 10px;
-  width: 300px;
-  max-height: 400px;
-  overflow-y: auto;
-}
-#send-order {
-    background-color: #EC407A;
-    color: white;
-    padding: 12px 24px;
-    font-size: 18px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-}
-#send-order:hover {
-    background-color: #D81B60;
+  position:fixed; right:20px; bottom:70px; background:white;
+  border:1px solid #ccc; padding:15px; border-radius:10px;
+  width:300px; max-height:400px; overflow-y:auto;
 }

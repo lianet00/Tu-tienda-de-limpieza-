@@ -3,17 +3,19 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tu Tienda de Limpieza</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="Logo de Tu Tienda de Limpieza" class="logo">
-        <h1>Tu Tienda de Limpieza</h1>
-    </header>
-    <main id="productos"></main>
-    <button id="verCarrito" class="carrito-flotante">🛒</button>
+    <h1>Tu Tienda de Limpieza</h1>
+    <button onclick="enviarPedido()">Enviar pedido</button>
+
+    <script>
+        function enviarPedido() {
+            let mensaje = encodeURIComponent("Hola, este sería mi pedido 🙂\n- Producto A x2\n- Producto B x1");
+            let numero = "5355019702";
+            let url = "https://wa.me/" + numero + "?text=" + mensaje;
+            window.open(url, "_blank");
+        }
+    </script>
 </body>
 </html>

@@ -1,66 +1,48 @@
+
 body {
     font-family: sans-serif;
     background-color: #fde4ec;
+    color: #000;
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 header {
-    text-align: center;
     background-color: #f8bbd0;
-    padding: 10px;
-}
-.logo {
-    max-width: 100px;
-}
-main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     padding: 20px;
 }
-.product {
-    background: #fff;
-    border-radius: 10px;
-    margin: 10px;
-    padding: 15px;
-    width: 200px;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+.logo {
+    width: 100px;
+    border-radius: 50%;
 }
-.controls {
+h1 {
+    margin: 10px 0 0;
+}
+.producto {
+    background: white;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 300px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.botones {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 5px;
+    gap: 10px;
     margin-top: 10px;
 }
 button {
-    background: #f06292;
-    color: white;
+    background-color: #f06292;
     border: none;
-    padding: 5px 10px;
+    color: white;
+    padding: 10px;
     border-radius: 5px;
-    cursor: pointer;
+    font-size: 18px;
 }
-#cart-icon {
+.carrito-flotante {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    font-size: 30px;
-    cursor: pointer;
-}
-#cart {
-    position: fixed;
-    right: 20px;
-    bottom: 70px;
-    background: white;
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 10px;
-    width: 300px;
-    max-height: 400px;
-    overflow-y: auto;
-}
-.hidden {
-    display: none;
+    font-size: 24px;
 }

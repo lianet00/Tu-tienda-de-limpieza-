@@ -1,75 +1,50 @@
-const products = [
-    { name: "Jabón Líquido", price: 3 },
-    { name: "Limpiador Multiusos", price: 4 },
-    { name: "Esponja", price: 1 },
+
+const productos = [
+    { nombre: "Jabón Líquido", precio: 3 },
+    { nombre: "Limpiador Multiusos", precio: 4 },
+    { nombre: "Esponja", precio: 1 },
 ];
 
-const cart = [];
+const carrito = {};
 
-function createProductCards() {
-    const container = document.getElementById("product-list");
-    products.forEach((product, index) => {
-        const card = document.createElement("div");
-        card.className = "product";
-        card.innerHTML = `
-            <h3>${product.name}</h3>
-            <p>$${product.price}</p>
-            <div class="controls">
-                <button onclick="changeQty(${index}, -1)">-</button>
-                <span id="qty-${index}">0</span>
-                <button onclick="changeQty(${index}, 1)">+</button>
-                <button onclick="addToCart(${index})">🛒</button>
+function renderProductos() {
+    const contenedor = document.getElementById("productos");
+    productos.forEach((producto, i) => {
+        carrito[i] = 0;
+        const div = document.createElement("div");
+        div.className = "producto";
+        div.innerHTML = `
+            <h2>${producto.nombre}</h2>
+            <p>$${producto.precio}</p>
+            <div class="botones">
+                <button onclick="cambiarCantidad(${i}, -1)">-</button>
+                <span id="cantidad-${i}">0</span>
+                <button onclick="cambiarCantidad(${i}, 1)">+</button>
+                <button onclick="agregarAlCarrito(${i})">🛒</button>
             </div>
         `;
-        container.appendChild(card);
+        contenedor.appendChild(div);
     });
 }
 
-function changeQty(index, delta) {
-    const qtyElement = document.getElementById(`qty-${index}`);
-    let qty = parseInt(qtyElement.textContent);
-    qty = Math.max(0, qty + delta);
-    qtyElement.textContent = qty;
+function cambiarCantidad(i, valor) {
+    carrito[i] = Math.max(0, carrito[i] + valor);
+    document.getElementById(`cantidad-${i}`).textContent = carrito[i];
 }
 
-function addToCart(index) {
-    const qty = parseInt(document.getElementById(`qty-${index}`).textContent);
-    if (qty > 0) {
-        const existing = cart.find(item => item.index === index);
-        if (existing) {
-            existing.qty += qty;
-        } else {
-            cart.push({ index, qty });
+function agregarAlCarrito(i) {
+    alert(`Agregado al carrito: ${productos[i].nombre} (${carrito[i]})`);
+}
+
+document.getElementById("verCarrito").onclick = () => {
+    let mensaje = "Hola, este sería mi pedido 🙂:%0A";
+    productos.forEach((p, i) => {
+        if (carrito[i] > 0) {
+            mensaje += `- ${p.nombre} x ${carrito[i]}%0A`;
         }
-        document.getElementById(`qty-${index}`).textContent = 0;
-        updateCartUI();
-    }
-}
-
-function updateCartUI() {
-    const list = document.getElementById("cart-items");
-    list.innerHTML = "";
-    cart.forEach(item => {
-        const product = products[item.index];
-        const li = document.createElement("li");
-        li.textContent = `${product.name} x ${item.qty}`;
-        list.appendChild(li);
     });
-}
+    const telefono = "5355019702";
+    window.open(`https://wa.me/${telefono}?text=${mensaje}`, "_blank");
+};
 
-function toggleCart() {
-    const cartDiv = document.getElementById("cart");
-    cartDiv.classList.toggle("hidden");
-}
-
-function sendOrder() {
-    if (cart.length === 0) return;
-    const phone = "+5355019702";
-    const message = "Hola, este sería mi pedido 🙂%0A" + cart.map(item => {
-        const p = products[item.index];
-        return `- ${p.name} x ${item.qty}`;
-    }).join("%0A");
-    const url = `https://wa.me/${phone}?text=${message}`;
-    window.open(url, "_blank");
-}
-createProductCards();
+renderProductos();

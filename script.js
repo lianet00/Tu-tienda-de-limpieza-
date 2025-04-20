@@ -1,50 +1,70 @@
-
-const productos = [
-    { nombre: "Jabón Líquido", precio: 3 },
-    { nombre: "Limpiador Multiusos", precio: 4 },
-    { nombre: "Esponja", precio: 1 },
+const products = [
+  { name: "Jabón Líquido", price: 3 },
+  { name: "Limpiador Multiusos", price: 4 },
+  { name: "Esponja", price: 1 }
 ];
 
-const carrito = {};
+let cart = [];
 
-function renderProductos() {
-    const contenedor = document.getElementById("productos");
-    productos.forEach((producto, i) => {
-        carrito[i] = 0;
-        const div = document.createElement("div");
-        div.className = "producto";
-        div.innerHTML = `
-            <h2>${producto.nombre}</h2>
-            <p>$${producto.precio}</p>
-            <div class="botones">
-                <button onclick="cambiarCantidad(${i}, -1)">-</button>
-                <span id="cantidad-${i}">0</span>
-                <button onclick="cambiarCantidad(${i}, 1)">+</button>
-                <button onclick="agregarAlCarrito(${i})">🛒</button>
-            </div>
-        `;
-        contenedor.appendChild(div);
-    });
+function renderProducts() {
+  const container = document.getElementById("productos");
+  products.forEach((p, i) => {
+    const div = document.createElement("div");
+    div.className = "product";
+    div.innerHTML = `<h3>${p.name}</h3><p>$${p.price}</p>
+      <div class="controls">
+        <button onclick="changeQty(${i}, -1)">-</button>
+        <span id="qty-${i}">0</span>
+        <button onclick="changeQty(${i}, 1)">+</button>
+        <button onclick="addToCart(${i})">🛒</button>
+      </div>`;
+    container.appendChild(div);
+  });
 }
 
-function cambiarCantidad(i, valor) {
-    carrito[i] = Math.max(0, carrito[i] + valor);
-    document.getElementById(`cantidad-${i}`).textContent = carrito[i];
+function changeQty(i, delta) {
+  const span = document.getElementById(`qty-${i}`);
+  let v = parseInt(span.textContent);
+  v = Math.max(0, v + delta);
+  span.textContent = v;
 }
 
-function agregarAlCarrito(i) {
-    alert(`Agregado al carrito: ${productos[i].nombre} (${carrito[i]})`);
+function addToCart(i) {
+  const qty = parseInt(document.getElementById(`qty-${i}`).textContent);
+  if (qty > 0) {
+    const existing = cart.find(item => item.i === i);
+    if (existing) existing.qty += qty;
+    else cart.push({ i, qty });
+    document.getElementById(`qty-${i}`).textContent = 0;
+    updateCart();
+  }
 }
 
-document.getElementById("verCarrito").onclick = () => {
-    let mensaje = "Hola, este sería mi pedido 🙂:%0A";
-    productos.forEach((p, i) => {
-        if (carrito[i] > 0) {
-            mensaje += `- ${p.nombre} x ${carrito[i]}%0A`;
-        }
-    });
-    const telefono = "5355019702";
-    window.open(`https://wa.me/${telefono}?text=${mensaje}`, "_blank");
-};
+function updateCart() {
+  const list = document.getElementById("cart-items");
+  list.innerHTML = "";
+  cart.forEach(item => {
+    const li = document.createElement("li");
+    const p = products[item.i];
+    li.textContent = `${p.name} x ${item.qty}`;
+    list.appendChild(li);
+  });
+}
 
-renderProductos();
+function toggleCart() {
+  document.getElementById("cart").classList.toggle("hidden");
+}
+
+function sendOrder() {
+  if (cart.length === 0) return alert("Carrito vacío");
+  let msg = "Hola, este sería mi pedido:%0A";
+  cart.forEach(item => {
+    const p = products[item.i];
+    msg += `- ${p.name} x${item.qty}%0A`;
+  });
+  window.open(`https://wa.me/5355019702?text=${msg}`, "_blank");
+}
+
+document.getElementById("cart-icon").onclick = toggleCart;
+document.getElementById("send-order").onclick = sendOrder;
+renderProducts();

@@ -1,50 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tu Tienda de Limpieza</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Tienda de Limpieza</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Logo de Tu Tienda de Limpieza" class="logo" />
-    <h1>Tu Tienda de Limpieza</h1>
-  </header>
-
-  <main id="product-list">
-    <!-- Productos de ejemplo -->
-    <div class="product">
-      <h2>Detergente</h2>
-      <p>$2.00</p>
-      <div class="quantity">
-        <button onclick="changeQuantity(this, -1)">-</button>
-        <span>0</span>
-        <button onclick="changeQuantity(this, 1)">+</button>
-      </div>
-      <button onclick="addToCart(this)">🛒</button>
+    <header>
+        <img src="logo.png" alt="Logo de Tu Tienda de Limpieza" class="logo">
+        <h1>Tu Tienda de Limpieza</h1>
+    </header>
+    <main id="product-list">
+        <!-- Productos generados por JavaScript -->
+    </main>
+    <div id="cart-icon" onclick="toggleCart()">🛒</div>
+    <div id="cart" class="hidden">
+        <h2>Mi Carrito</h2>
+        <ul id="cart-items"></ul>
+        <button onclick="sendOrder()">Enviar pedido por WhatsApp</button>
     </div>
-
-    <div class="product">
-      <h2>Cloro</h2>
-      <p>$1.50</p>
-      <div class="quantity">
-        <button onclick="changeQuantity(this, -1)">-</button>
-        <span>0</span>
-        <button onclick="changeQuantity(this, 1)">+</button>
-      </div>
-      <button onclick="addToCart(this)">🛒</button>
-    </div>
-  </main>
-
-  <div id="cart-icon" onclick="toggleCart()">🛒</div>
-  <div id="cart" class="hidden">
-    <h2>Mi Carrito</h2>
-    <ul id="cart-items"></ul>
-    <button onclick="sendToWhatsApp()">Enviar pedido por WhatsApp</button>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

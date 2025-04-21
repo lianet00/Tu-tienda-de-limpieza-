@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tu Tienda de Limpieza</title>
+</head>
+<body>
+    <h1>Tu Tienda de Limpieza</h1>
+    <button onclick="enviarPedido()">Enviar pedido</button>
+
+    <script>
+        function enviarPedido() {
+            let mensaje = encodeURIComponent("Hola, este sería mi pedido 🙂\n- Producto A x2\n- Producto B x1");
+            let numero = "5355019702";
+            let url = "https://wa.me/" + numero + "?text=" + mensaje;
+            window.open(url, "_blank");
+        }
+    </script>
+</body>
+</html>
